@@ -7,14 +7,14 @@ class Opensourcetree < Formula
   on_linux do
     on_intel do
       url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.1.0/opensourcetree-0.1.0-linux-x64.tar.gz"
-      sha256 "PLACEHOLDER_LINUX_X64_SHA256"
+      sha256 "dbee73fad1b70abda5edeb793ca90f4311049b708b34364effcdbd1844ce3a0a"
     end
   end
 
   on_macos do
     on_arm do
       url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.1.0/opensourcetree-0.1.0-osx-arm64.tar.gz"
-      sha256 "PLACEHOLDER_OSX_ARM64_SHA256"
+      sha256 "7ee318fc88937b1f16ab9704d904f4cc645908d9c22b77020c2a2798164cbbbb"
     end
   end
 
