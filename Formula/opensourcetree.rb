@@ -1,20 +1,20 @@
 class Opensourcetree < Formula
   desc "Cross-platform Git GUI application"
   homepage "https://github.com/kiryl-kvit/opensourcetree"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_linux do
     on_intel do
-      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.1.0/opensourcetree-0.1.0-linux-x64.tar.gz"
-      sha256 "571fa184c6e633c13f1d17038131b6225fb18feb9df460097ca9d1c517e46e69"
+      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.2.0/opensourcetree-0.2.0-linux-x64.tar.gz"
+      sha256 "71014c77c90c74ee13d1e3e3654f96d9de37e76e139c59fa5fd0efd47a8b7600"
     end
   end
 
   on_macos do
     on_arm do
-      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.1.0/opensourcetree-0.1.0-osx-arm64.tar.gz"
-      sha256 "67775084f4eeb00139793952d3b93ccd9ebf2f6dce71ab81dbdabb3d74d90bbd"
+      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.2.0/opensourcetree-0.2.0-osx-arm64.tar.gz"
+      sha256 "9c8c6a5810b0fcca2201b68b3536e46700c717290ed1feb4cd471a04c4ef1b7d"
     end
   end
 
