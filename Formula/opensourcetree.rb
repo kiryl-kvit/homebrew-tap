@@ -1,20 +1,20 @@
 class Opensourcetree < Formula
   desc "Cross-platform Git GUI application"
   homepage "https://github.com/kiryl-kvit/opensourcetree"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
 
   on_linux do
     on_intel do
-      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.2.0/opensourcetree-0.2.0-linux-x64.tar.gz"
-      sha256 "71014c77c90c74ee13d1e3e3654f96d9de37e76e139c59fa5fd0efd47a8b7600"
+      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.3.0/opensourcetree-0.3.0-linux-x64.tar.gz"
+      sha256 "c729c848230c7854ad738c10b5d2ebd1d8cf948cf13883dfb2b5892b8d7f0854"
     end
   end
 
   on_macos do
     on_arm do
-      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.2.0/opensourcetree-0.2.0-osx-arm64.tar.gz"
-      sha256 "9c8c6a5810b0fcca2201b68b3536e46700c717290ed1feb4cd471a04c4ef1b7d"
+      url "https://github.com/kiryl-kvit/opensourcetree/releases/download/v0.3.0/opensourcetree-0.3.0-osx-arm64.tar.gz"
+      sha256 "df6db4842fc7969f3489a0cf71aefa799d3748082ed80fe0b9888604b835339d"
     end
   end
 
@@ -28,16 +28,16 @@ class Opensourcetree < Formula
     else
       bin.install "opensourcetree"
 
-      # Install .desktop file to ~/.local/share/applications for desktop integration
-      local_apps = Pathname.new(Dir.home)/".local/share/applications"
-      local_apps.mkpath
-      desktop_file = local_apps/"opensourcetree.desktop"
+      # Install .desktop file to the Homebrew share directory for desktop integration
+      desktop_dir = share/"applications"
+      desktop_dir.mkpath
+      desktop_file = desktop_dir/"opensourcetree.desktop"
       desktop_file.write <<~DESKTOP
         [Desktop Entry]
         Name=OpenSourceTree
         GenericName=Git Client
         Comment=Cross-platform Git GUI application
-        Exec=#{bin}/opensourcetree %F
+        Exec=#{opt_bin}/opensourcetree %F
         Icon=opensourcetree
         Terminal=false
         Type=Application
@@ -47,10 +47,10 @@ class Opensourcetree < Formula
         MimeType=application/x-git;
       DESKTOP
 
-      # Install icon to ~/.local/share/icons for desktop integration
-      local_icons = Pathname.new(Dir.home)/".local/share/icons/hicolor/scalable/apps"
-      local_icons.mkpath
-      (local_icons/"opensourcetree.svg").write(File.read("opensourcetree.svg"))
+      # Install icon to the Homebrew share directory for desktop integration
+      icon_dir = share/"icons/hicolor/scalable/apps"
+      icon_dir.mkpath
+      (icon_dir/"opensourcetree.svg").write(File.read("opensourcetree.svg"))
     end
   end
 
@@ -65,21 +65,11 @@ class Opensourcetree < Formula
     else
       <<~EOS
         Desktop integration files have been installed to:
-          ~/.local/share/applications/opensourcetree.desktop
-          ~/.local/share/icons/hicolor/scalable/apps/opensourcetree.svg
+          #{share}/applications/opensourcetree.desktop
+          #{share}/icons/hicolor/scalable/apps/opensourcetree.svg
 
-        You may need to log out and back in for the app to appear in your launcher.
+        If your launcher does not pick it up - ln -s $(brew --prefix)/share/applications/opensourcetree.desktop ~/.local/share/applications.
       EOS
-    end
-  end
-
-  def post_uninstall
-    if OS.linux?
-      # Clean up desktop integration files
-      desktop_file = Pathname.new(Dir.home)/".local/share/applications/opensourcetree.desktop"
-      icon_file = Pathname.new(Dir.home)/".local/share/icons/hicolor/scalable/apps/opensourcetree.svg"
-      desktop_file.unlink if desktop_file.exist?
-      icon_file.unlink if icon_file.exist?
     end
   end
 
